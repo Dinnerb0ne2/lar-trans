@@ -1,0 +1,6 @@
+p.txt
+.venv/
+__pycache__/
+*.pyc
+server/state.json
+.pytest_cache/
