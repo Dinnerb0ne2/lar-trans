@@ -57,22 +57,20 @@ pip install -r requirements.txt
 
 ## 4. 启动服务端
 
+Edit `server/config.json` to set `host`, `port`, and `state_file`, then run:
+
 ```powershell
-python -m server.main --host 0.0.0.0 --port 8000 --state-file server\state.json
+python -m server.main -c server/config.json
 ```
 
 > 服务端默认会从 `..\LightArmyRecon` 加载模型与数据库并处理上传帧。
 
 ## 5. 启动客户端（树莓派）
 
+Edit `client/config.json` to set `server_url`, `client_id`, `camera_index`, `fps`, `resolution`, and `silent`, then run:
+
 ```powershell
-python -m client.main ^
-  --server-url http://<server-ip>:8000 ^
-  --client-id pi-cam-01 ^
-  --camera-index 0 ^
-  --fps 10 ^
-  --resolution 480p ^
-  --silent
+python -m client.main -c client/config.json
 ```
 
 ## 6. 服务端远程控制示例
@@ -107,12 +105,5 @@ curl -X POST "http://127.0.0.1:8000/api/v1/client/pi-cam-01/control/auto"
 pytest -q
 ```
 
-## 8. 版本控制（git）
-
-```powershell
-git status
-git add .
-git commit -m "feat: implement raspberry-pi monitor client/server pipeline"
-```
 
 详细接口和部署说明见 `doc/API.md` 与 `doc/DEPLOY_RASPBERRY_PI.md`。

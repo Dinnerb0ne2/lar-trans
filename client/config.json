@@ -1,0 +1,13 @@
+{
+  "server_url": "http://127.0.0.1:8000",
+  "client_id": "pi-cam-01",
+  "camera_index": 0,
+  "fps": 10,
+  "resolution": "480p",
+  "silent": false,
+  "heartbeat_interval": 10.0,
+  "config_poll_interval": 3.0,
+  "connect_timeout": 3.0,
+  "read_timeout": 20.0,
+  "verbose": false
+}

@@ -25,23 +25,23 @@ ls /dev/video*
 
 默认摄像头索引为 `0`，如果多个摄像头可改 `--camera-index`。
 
-## 4. 服务端启动
+## 4. 服务端启动（使用配置文件）
+
+Edit `server/config.json` to set `host`, `port`, and `state_file` as needed, then run:
 
 ```bash
-python -m server.main --host 0.0.0.0 --port 8000
+python -m server.main -c server/config.json
 ```
 
-## 5. 客户端启动
+## 5. 客户端启动（使用配置文件）
+
+Edit `client/config.json` to configure `server_url`, `client_id`, `camera_index`, `fps`, `resolution`, and `silent`, then run:
 
 ```bash
-python -m client.main \
-  --server-url http://<server-ip>:8000 \
-  --client-id pi-cam-01 \
-  --camera-index 0 \
-  --fps 10 \
-  --resolution 480p \
-  --silent
+python -m client.main -c client/config.json
 ```
+
+You can still pass `--verbose` on the command line to override logging level from the config.
 
 ## 6. systemd 自启动（可选）
 
@@ -55,7 +55,7 @@ After=network-online.target
 [Service]
 Type=simple
 WorkingDirectory=/home/pi/lar-trans
-ExecStart=/home/pi/lar-trans/.venv/bin/python -m client.main --server-url http://<server-ip>:8000 --client-id pi-cam-01 --camera-index 0 --silent
+ExecStart=/home/pi/lar-trans/.venv/bin/python -m client.main -c /home/pi/lar-trans/client/config.json --silent
 Restart=always
 RestartSec=5
 
